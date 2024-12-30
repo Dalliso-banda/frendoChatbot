@@ -131,7 +131,7 @@ location:[
       let userInput = userProf.Msg.value;
          event.preventDefault();
          // console.log(userInput)
-         let msgValue= userProf.Msg.value;
+         let msgValue= userProf.Msg.value.toLowerCase();
           let span = document.createElement('p');
         let txt=  userProf.body.appendChild(span);
        
