@@ -10,11 +10,13 @@ This chatbot is in its early stages and is designed to handle simple conversatio
 
 To keep the conversation simple, try commands like:
 - `hola`
-- `who is Frendo?`
+- `who are you`
+##refrence for questions
+check for the js codes array of bot res
 
 ## Future Work
 
-I plan to enhance the chatbot's capabilities and improve its responses over time.
+I plan to enhance the chatbot's capabilities and improve its responses over time. and perhaps make it artificially intelligent using Rasa
 
 ## Live Demo
 
