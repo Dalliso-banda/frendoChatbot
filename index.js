@@ -140,7 +140,7 @@ location:[
        bodTxt.push(userInput.toLowerCase())
         txt.innerHTML= bodTxt;
          
-       if(userProf.botRes.includes(msgValue.trim())){
+       if(userProf.botRes.toLowerCase().includes(msgValue.trim())){
        
       let span = document.createElement('p');
         let botTxt=  userProf.body.appendChild(span);                
