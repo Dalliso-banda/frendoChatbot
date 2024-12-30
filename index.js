@@ -137,7 +137,7 @@ location:[
        
        let bodTxt=[];
        
-       bodTxt.push(userInput)
+       bodTxt.push(userInput.toLowerCase())
         txt.innerHTML= bodTxt;
          
        if(userProf.botRes.includes(msgValue.trim())){
