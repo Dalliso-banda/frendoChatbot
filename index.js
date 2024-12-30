@@ -6,9 +6,9 @@ alert('i am a simple chat bot designed to give information about Frendo, please 
       sendBtn: document.querySelector('i'),
       botRes:[
            // English
-"Hello",
-"Hi",
-"Hey",
+"hello",
+"hi",
+"hey",
 "tsup",
 "how are you?"
 ,
