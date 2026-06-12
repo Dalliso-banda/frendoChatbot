@@ -1,0 +1,32 @@
+name: Train Rasa Model
+
+on:
+  workflow_dispatch:
+    inputs:
+      rasa_version:
+        description: 'Rasa version'
+        required: true
+        default: '3.6.0'
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Rasa
+        run: pip install rasa==${{ github.event.inputs.rasa_version }}
+
+      - name: Train model
+        run: rasa train --out models/
+
+      - name: Upload model artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: rasa-model
+          path: models/*.tar.gz
