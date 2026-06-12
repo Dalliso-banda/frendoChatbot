@@ -8,18 +8,21 @@ on:
         required: true
         default: '3.6.0'
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # 🚀 Silences the GitHub warning perfectly
+
 jobs:
   train:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4 # 🚀 Upgraded from v3 to v4
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5 # 🚀 Upgraded from v4 to v5
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'
-          cache: 'pip'
+          # 💡 Removed cache line since your repo doesn't have requirements.txt yet
 
       - name: Install System Dependencies
         run: |
@@ -39,7 +42,7 @@ jobs:
           rasa train --out models/
 
       - name: Upload Trained Model Artifact
-        uses: actions/upload-artifact@v4 # 🚀 Upgraded from v3 to v4 (Fixes your exact error)
+        uses: actions/upload-artifact@v4
         with:
           name: rasa-model
           path: models/
