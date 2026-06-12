@@ -9,7 +9,7 @@ on:
         default: '3.6.0'
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # 🚀 Silences the GitHub warning perfectly
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   train:
@@ -22,7 +22,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.9'
-          # 💡 Removed cache line since your repo doesn't have requirements.txt yet
 
       - name: Install System Dependencies
         run: |
@@ -32,6 +31,11 @@ jobs:
       - name: Upgrade Pip and Build Tools
         run: |
           python -m pip install --upgrade pip setuptools wheel
+
+      - name: Fix Sub-Dependency Conflicts
+        run: |
+          # 🚀 Forces an older version of sentry-sdk to prevent the 'get_isolation_scope' crash
+          pip install "sentry-sdk<2.0.0"
 
       - name: Install Rasa Framework
         run: |
