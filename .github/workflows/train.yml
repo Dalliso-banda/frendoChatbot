@@ -32,14 +32,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip setuptools wheel
 
-      - name: Force Compatible Sentry Dependency
-        run: |
-          # 🚀 Installs a safe version directly without triggering pip's conflict engine
-          pip install "sentry-sdk==1.45.0" --no-deps
-
       - name: Install Rasa Framework
         run: |
-          pip install rasa==${{ github.event.inputs.rasa_version }} --use-deprecated=legacy-resolver
+          # 🚀 Inline dependency resolution to handle the sentry-sdk compatibility issue
+          pip install rasa==${{ github.event.inputs.rasa_version }} "sentry-sdk>=1.50.0" --use-deprecated=legacy-resolver
 
       - name: Train Rasa Model
         run: |
