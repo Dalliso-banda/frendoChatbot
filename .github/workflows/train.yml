@@ -36,7 +36,7 @@ jobs:
       - name: Install Rasa Framework
         run: |
           pip install rasa==${{ github.event.inputs.rasa_version }} --use-deprecated=legacy-resolver
-          pip install "sentry-sdk>=2.0.0" "setuptools<70" "sqlalchemy<2.0" --force-reinstall
+          pip install "structlog-sentry<2.1" "sentry-sdk>=1.14,<2.0" "setuptools<70" "sqlalchemy<2.0" --force-reinstall
 
       - name: Train Rasa Model
         run: |
