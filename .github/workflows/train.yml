@@ -12,21 +12,34 @@ jobs:
   train:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4 # 🚀 Upgraded from v3 to v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5 # 🚀 Upgraded from v4 to v5
         with:
           python-version: '3.9'
+          cache: 'pip'
 
-      - name: Install Rasa
-        run: pip install rasa==${{ github.event.inputs.rasa_version }}
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential python3-dev libpq-dev
 
-      - name: Train model
-        run: rasa train --out models/
+      - name: Upgrade Pip and Build Tools
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
 
-      - name: Upload model artifact
-        uses: actions/upload-artifact@v3
+      - name: Install Rasa Framework
+        run: |
+          pip install rasa==${{ github.event.inputs.rasa_version }} --use-deprecated=legacy-resolver
+
+      - name: Train Rasa Model
+        run: |
+          rasa train --out models/
+
+      - name: Upload Trained Model Artifact
+        uses: actions/upload-artifact@v4 # 🚀 Upgraded from v3 to v4 (Fixes your exact error)
         with:
           name: rasa-model
-          path: models/*.tar.gz
+          path: models/
