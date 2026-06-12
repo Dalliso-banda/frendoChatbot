@@ -34,8 +34,8 @@ jobs:
 
       - name: Install Rasa Framework
         run: |
-          # 🚀 Inline dependency resolution to handle the sentry-sdk compatibility issue
-          pip install rasa==${{ github.event.inputs.rasa_version }} "sentry-sdk>=1.50.0" --use-deprecated=legacy-resolver
+          pip install rasa==${{ github.event.inputs.rasa_version }} --use-deprecated=legacy-resolver
+          pip install "sentry-sdk>=2.0.0" --force-reinstall
 
       - name: Train Rasa Model
         run: |
