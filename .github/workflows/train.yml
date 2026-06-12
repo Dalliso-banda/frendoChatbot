@@ -30,12 +30,13 @@ jobs:
 
       - name: Upgrade Pip and Build Tools
         run: |
-          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --upgrade pip wheel
+          pip install "setuptools<70" "sqlalchemy<2.0"
 
       - name: Install Rasa Framework
         run: |
           pip install rasa==${{ github.event.inputs.rasa_version }} --use-deprecated=legacy-resolver
-          pip install "sentry-sdk>=2.0.0" --force-reinstall
+          pip install "sentry-sdk>=2.0.0" "setuptools<70" "sqlalchemy<2.0" --force-reinstall
 
       - name: Train Rasa Model
         run: |
